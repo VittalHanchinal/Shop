@@ -8,26 +8,28 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.AdminEntity;
 import com.example.demo.service.AdminService;
 import com.example.demo.repositary.AdminRepositary;
+
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminRepositary adminRepositary;
 
 	@Override
 	public AdminEntity findByadminEmail(String adminEmail, String adminPassword) {
-		Optional<AdminEntity> optional=adminRepositary.findByadminEmail(adminEmail);
-		if(optional.isPresent())
-		{
+		Optional<AdminEntity> optional = adminRepositary.findByadminEmail(adminEmail);
+		if (optional.isPresent()) {
 			AdminEntity admin = optional.get();
 			System.out.println("Admin found: " + admin);
 			return optional.get();
-		}
-		else {
+		} else {
 			throw new RuntimeException("fail to find");
 		}
 	}
 
+	@Override
+	public AdminEntity login(String email, String password) {
+		// Using the existing method for now
+		return findByadminEmail(email, password);
+	}
+
 }
-
-
-
