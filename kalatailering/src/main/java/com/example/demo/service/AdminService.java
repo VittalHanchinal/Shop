@@ -6,4 +6,6 @@ public interface AdminService {
 
 	AdminEntity findByadminEmail(String adminEmail, String adminPassword);
 
+	AdminEntity login(String email, String password);
+
 }
